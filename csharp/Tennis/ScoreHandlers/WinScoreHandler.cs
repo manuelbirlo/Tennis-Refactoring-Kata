@@ -43,7 +43,7 @@ namespace Tennis.ScoreHandlers
         }
 
         /// <summary>
-        /// Determines if the given player has won.
+        /// Determines whether the given player has won.
         /// </summary>
         /// <param name="pointsCurrentPlayer">The points of the current player being checked.</param>
         /// <param name="pointsOpponent">The points of the opponent player.</param>
