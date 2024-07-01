@@ -1,4 +1,5 @@
 using Tennis.Interfaces;
+using Tennis.Constants;
 
 namespace Tennis.ScoreHandlers
 {
@@ -28,7 +29,13 @@ namespace Tennis.ScoreHandlers
         /// <returns>A string representing the score if neither player has won or has an advantage, otherwise a delegation to the next score handler is triggered.</returns>
         public string Handle(int pointsPlayerOne, int pointsPlayerTwo)
         {
-            var scores = new[] { "Love", "Fifteen", "Thirty", "Forty" };
+            var scores = new[] 
+            { 
+                ScoreConstants.Love, 
+                ScoreConstants.Fifteen, 
+                ScoreConstants.Thirty, 
+                ScoreConstants.Forty 
+            };
 
             if (pointsPlayerOne < 4 && pointsPlayerTwo < 4 && !(pointsPlayerOne + pointsPlayerTwo == 6))
             {

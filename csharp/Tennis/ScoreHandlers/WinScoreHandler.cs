@@ -1,4 +1,5 @@
 using Tennis.Interfaces;
+using Tennis.Constants;
 
 namespace Tennis.ScoreHandlers
 {
@@ -30,12 +31,12 @@ namespace Tennis.ScoreHandlers
         {
             if (pointsPlayerOne >= 4 && pointsPlayerOne >= pointsPlayerTwo + 2)
             {
-                 return "Win for player1";
+                 return ScoreConstants.WinForPlayer1;
             }
             
             if (pointsPlayerTwo >= 4 && pointsPlayerTwo >= pointsPlayerOne + 2) 
             {
-                return "Win for player2"; 
+                return ScoreConstants.WinForPlayer2;
             }
 
             return nextScoreHandler?.Handle(pointsPlayerOne, pointsPlayerTwo);

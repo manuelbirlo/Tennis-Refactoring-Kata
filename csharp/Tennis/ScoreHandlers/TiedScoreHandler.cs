@@ -1,4 +1,5 @@
 using Tennis.Interfaces;
+using Tennis.Constants;
 
 namespace Tennis.ScoreHandlers
 {
@@ -32,10 +33,10 @@ namespace Tennis.ScoreHandlers
             {
                 switch (pointsPlayerOne)
                 {
-                    case 0: return "Love-All";
-                    case 1: return "Fifteen-All";
-                    case 2: return "Thirty-All";
-                    default: return "Deuce";
+                    case 0: return ScoreConstants.LoveAll;
+                    case 1: return ScoreConstants.FifteenAll;
+                    case 2: return ScoreConstants.ThirtyAll;
+                    default: return ScoreConstants.Deuce;
                 }
             }
 
