@@ -37,14 +37,23 @@ namespace Tennis.ScoreHandlers
                 ScoreConstants.Forty 
             };
 
-            bool isDefaultScore = pointsPlayerOne < 4 && pointsPlayerTwo < 4 && (pointsPlayerOne + pointsPlayerTwo != 6);
-
-            if (isDefaultScore)
+            if (IsDefaultScore(pointsPlayerOne, pointsPlayerTwo))
             {
                 return $"{scores[pointsPlayerOne]}-{scores[pointsPlayerTwo]}";
             }
 
             return nextScoreHandler?.Handle(pointsPlayerOne, pointsPlayerTwo);
+        }
+
+        /// <summary>
+        /// Determines whether the current score is a default score.
+        /// </summary>
+        /// <param name="pointsPlayerOne">The points of player one.</param>
+        /// <param name="pointsPlayerTwo">The points of player two.</param>
+        /// <returns>A boolean indicating whether the score is a default score.</returns>
+        private bool IsDefaultScore(int pointsPlayerOne, int pointsPlayerTwo)
+        {
+            return pointsPlayerOne < 4 && pointsPlayerTwo < 4 && (pointsPlayerOne + pointsPlayerTwo != 6);
         }
     }
 }
