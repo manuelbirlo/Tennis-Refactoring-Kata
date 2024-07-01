@@ -29,17 +29,28 @@ namespace Tennis.ScoreHandlers
         /// <returns>A string representing the score if a win is detected, otherwise a delegation to the next score handler is triggered.</returns>
         public string Handle(int pointsPlayerOne, int pointsPlayerTwo)
         {
-            if (pointsPlayerOne >= 4 && pointsPlayerOne >= pointsPlayerTwo + 2)
+            if (IsWin(pointsPlayerOne, pointsPlayerTwo))
             {
-                 return ScoreConstants.WinForPlayer1;
+                return ScoreConstants.WinForPlayer1;
             }
             
-            if (pointsPlayerTwo >= 4 && pointsPlayerTwo >= pointsPlayerOne + 2) 
+            if (IsWin(pointsPlayerTwo, pointsPlayerOne))
             {
                 return ScoreConstants.WinForPlayer2;
             }
 
             return nextScoreHandler?.Handle(pointsPlayerOne, pointsPlayerTwo);
+        }
+
+        /// <summary>
+        /// Determines if the given player has won.
+        /// </summary>
+        /// <param name="pointsCurrentPlayer">The points of the current player being checked.</param>
+        /// <param name="pointsOpponent">The points of the opponent player.</param>
+        /// <returns>A boolean indicating whether the current player has won.</returns>
+        private bool IsWin(int pointsCurrentPlayer, int pointsOpponent)
+        {
+            return pointsCurrentPlayer >= 4 && pointsCurrentPlayer >= pointsOpponent + 2;
         }
     }
 }
