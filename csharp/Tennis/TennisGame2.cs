@@ -10,9 +10,9 @@ namespace Tennis
     public class TennisGame2 : ITennisGame
     {
         // Points for player 1
-        private int p1point;
+        private int playerOnePoints;
         // Points for player 2
-        private int p2point;
+        private int playerTwoPoints;
 
         // Names of player 1 and 2
         private string player1Name;
@@ -20,6 +20,10 @@ namespace Tennis
 
         // A reference to a scoring strategy
         private readonly IScoringStrategy scoringStrategy;
+
+        // Private constants for player identifiers
+        private const string Player1 = "player1";
+        private const string Player2 = "player2";
 
         /// <summary>
         /// Initializes a new instance of the TennisGame2 class with player names and an optional injected scoring strategy.
@@ -42,25 +46,25 @@ namespace Tennis
         /// <returns>A string representing the current score.</returns>
         public string GetScore()
         {
-            return scoringStrategy.GetScore(p1point, p2point);
+            return scoringStrategy.GetScore(playerOnePoints, playerTwoPoints);
         }
 
          /// <summary>
         /// Sets the score for player 1.
         /// </summary>
         /// <param name="points">The score to set for player 1.</param>
-        public void SetP1Score(int points)
+        public void SetPlayer1Score(int points)
         {
-            p1point = points;
+            playerOnePoints = points;
         }
 
         /// <summary>
         /// Sets the score for player 2.
         /// </summary>
         /// <param name="points">The score to set for player 2.</param>
-        public void SetP2Score(int points)
+        public void SetPlayer2Score(int points)
         {
-            p2point = points;
+            playerTwoPoints = points;
         }
 
         /// <summary>
@@ -69,12 +73,12 @@ namespace Tennis
         /// <param name="player">The name of the player who won the point.</param>
         public void WonPoint(string player)
         {
-            if (player == "player1")
-                p1point++;
-            else if (player == "player2")
-                p2point++;
+            if (player == Player1)
+                playerOnePoints++;
+            else if (player == Player2)
+                playerTwoPoints++;
             else
-                throw new ArgumentException("Invalid player name", nameof(player));
+                throw new ArgumentException($"Invalid player name. Valid names are '{Player1}' and '{Player2}'.", nameof(player));
         }
     }
 }
