@@ -15,8 +15,8 @@ namespace Tennis
         private int playerTwoPoints;
 
         // Names of player 1 and 2
-        private string player1Name;
-        private string player2Name;
+        private readonly string player1Name;
+        private readonly string player2Name;
 
         // A reference to a scoring strategy
         private readonly IScoringStrategy scoringStrategy;
@@ -73,12 +73,17 @@ namespace Tennis
         /// <param name="player">The name of the player who won the point.</param>
         public void WonPoint(string player)
         {
-            if (player == Player1)
-                playerOnePoints++;
-            else if (player == Player2)
-                playerTwoPoints++;
-            else
-                throw new ArgumentException($"Invalid player name. Valid names are '{Player1}' and '{Player2}'.", nameof(player));
+            switch (player)
+            {
+                case Player1:
+                    playerOnePoints++;
+                    break;
+                case Player2:
+                    playerTwoPoints++;
+                    break;
+                default:
+                    throw new ArgumentException($"Invalid player name. Valid names are '{Player1}' and '{Player2}'.", nameof(player));
+            }
         }
     }
 }
