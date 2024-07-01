@@ -31,14 +31,13 @@ namespace Tennis.ScoreHandlers
         {
             if (pointsPlayerOne >= 3 && pointsPlayerTwo >= 3)
             {
-                if (pointsPlayerOne == pointsPlayerTwo + 1) 
+                int pointDifference = pointsPlayerOne - pointsPlayerTwo;
+                switch (pointDifference)
                 {
-                    return ScoreConstants.AdvantagePlayer1;
-                }
-
-                if (pointsPlayerTwo == pointsPlayerOne + 1) 
-                {
-                    return ScoreConstants.AdvantagePlayer2;
+                    case 1:
+                        return ScoreConstants.AdvantagePlayer1;
+                    case -1:
+                        return ScoreConstants.AdvantagePlayer2;
                 }
             }
 
