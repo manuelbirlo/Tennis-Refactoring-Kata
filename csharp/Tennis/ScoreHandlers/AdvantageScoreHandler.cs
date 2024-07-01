@@ -35,7 +35,7 @@ namespace Tennis.ScoreHandlers
                     return "Advantage player1";
                 }
 
-                if (pointsPlayerOne == pointsPlayerTwo + 1) 
+                if (pointsPlayerTwo == pointsPlayerOne + 1) 
                 {
                     return "Advantage player2";
                 }
