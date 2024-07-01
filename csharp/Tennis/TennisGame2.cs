@@ -30,20 +30,14 @@ namespace Tennis
             return scoringStrategy.GetScore(p1point, p2point);
         }
 
-        public void SetP1Score(int number)
+        public void SetP1Score(int points)
         {
-            for (int i = 0; i < number; i++)
-            {
-                P1Score();
-            }
+            p1point = points;
         }
 
-        public void SetP2Score(int number)
+        public void SetP2Score(int points)
         {
-            for (var i = 0; i < number; i++)
-            {
-                P2Score();
-            }
+            p2point = points;
         }
 
         private void P1Score()
