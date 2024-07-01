@@ -37,7 +37,9 @@ namespace Tennis.ScoreHandlers
                 ScoreConstants.Forty 
             };
 
-            if (pointsPlayerOne < 4 && pointsPlayerTwo < 4 && !(pointsPlayerOne + pointsPlayerTwo == 6))
+            bool isDefaultScore = pointsPlayerOne < 4 && pointsPlayerTwo < 4 && (pointsPlayerOne + pointsPlayerTwo != 6);
+
+            if (isDefaultScore)
             {
                 return $"{scores[pointsPlayerOne]}-{scores[pointsPlayerTwo]}";
             }
