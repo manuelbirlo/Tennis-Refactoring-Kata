@@ -29,7 +29,7 @@ namespace Tennis.ScoreHandlers
         /// <returns>A string representing the score if advantage is detected, otherwise a delegation to the next score handler is triggered.</returns>
         public string Handle(int pointsPlayerOne, int pointsPlayerTwo)
         {
-            if (pointsPlayerOne >= 3 && pointsPlayerTwo >= 3)
+            if (IsAdvantageScenario(pointsPlayerOne, pointsPlayerTwo))
             {
                 int pointDifference = pointsPlayerOne - pointsPlayerTwo;
                 switch (pointDifference)
@@ -42,6 +42,17 @@ namespace Tennis.ScoreHandlers
             }
 
             return nextScoreHandler?.Handle(pointsPlayerOne, pointsPlayerTwo);
+        }
+
+        /// <summary>
+        /// Determines whether the current score is an advantage scenario.
+        /// </summary>
+        /// <param name="pointsPlayerOne">The points of player one.</param>
+        /// <param name="pointsPlayerTwo">The points of player two.</param>
+        /// <returns>A boolean indicating whether the score is an advantage scenario.</returns>
+        private bool IsAdvantageScenario(int pointsPlayerOne, int pointsPlayerTwo)
+        {
+            return pointsPlayerOne >= 3 && pointsPlayerTwo >= 3;
         }
     }
 }
