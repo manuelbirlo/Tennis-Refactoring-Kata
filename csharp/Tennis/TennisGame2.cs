@@ -1,5 +1,6 @@
 using Tennis.Interfaces;
 using Tennis.ScoringStrategies;
+using System;
 
 namespace Tennis
 {
@@ -14,13 +15,11 @@ namespace Tennis
         // Holds a reference to a scoring strategy
         private readonly IScoringStrategy scoringStrategy;
 
-        public TennisGame2(string player1Name, string player2Name)
+        public TennisGame2(string player1Name, string player2Name, IScoringStrategy injectedScoringStrategy = null)
         {
-            this.player1Name = player1Name;
-            this.player2Name = player2Name;
-            p1point = 0;
-            p2point = 0;
-            scoringStrategy = new DefaultScoringStrategy();
+            this.player1Name = string.IsNullOrEmpty(player1Name) ? throw new ArgumentException(nameof(player1Name)) : player1Name;
+            this.player2Name = string.IsNullOrEmpty(player2Name) ? throw new ArgumentException(nameof(player2Name)) : player2Name;
+            scoringStrategy = injectedScoringStrategy ?? new DefaultScoringStrategy();
         }
 
         public string GetScore()
@@ -38,24 +37,15 @@ namespace Tennis
             p2point = points;
         }
 
-        private void P1Score()
-        {
-            p1point++;
-        }
-
-        private void P2Score()
-        {
-            p2point++;
-        }
-
         public void WonPoint(string player)
         {
             if (player == "player1")
-                P1Score();
+                p1point++;
+            else if (player == "player2")
+                p2point++;
             else
-                P2Score();
+                throw new ArgumentException("Invalid player name", nameof(player));
         }
-
     }
 }
 
