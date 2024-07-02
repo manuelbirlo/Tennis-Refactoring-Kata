@@ -21,10 +21,6 @@ namespace Tennis
         // A reference to a scoring strategy
         private readonly IScoringStrategy scoringStrategy;
 
-        // Private constants for player identifiers
-        private const string Player1 = "player1";
-        private const string Player2 = "player2";
-
         /// <summary>
         /// Initializes a new instance of the TennisGame2 class with player names and an optional injected scoring strategy.
         /// </summary>
@@ -75,14 +71,14 @@ namespace Tennis
         {
             switch (player)
             {
-                case Player1:
+                case string playerName when playerName == player1Name:
                     playerOnePoints++;
                     break;
-                case Player2:
+                case string playerName when playerName == player2Name:
                     playerTwoPoints++;
                     break;
                 default:
-                    throw new ArgumentException($"Invalid player name. Valid names are '{Player1}' and '{Player2}'.", nameof(player));
+                    throw new ArgumentException($"Invalid player name. Valid names are '{player1Name}' and '{player2Name}'.", nameof(player));
             }
         }
     }

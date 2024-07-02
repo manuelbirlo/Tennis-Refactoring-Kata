@@ -75,7 +75,7 @@ namespace Tennis.Tests
         public void Tennis1Test(int p1, int p2, string expected)
         {
             var game = new TennisGame1("player1", "player2");
-            CheckAllScores(game, p1, p2, expected);
+            CheckAllScores(game, p1, p2, expected, "player1", "player2");
         }
 
         /// <summary>
@@ -94,7 +94,20 @@ namespace Tennis.Tests
 
             // Act & Assert: 
             // Verify that the game's score matches the expected score for all given points.
-            CheckAllScores(game, p1, p2, expected);
+            CheckAllScores(game, p1, p2, expected, "player1", "player2");
+        }
+
+        [Theory]
+        [ClassData(typeof(TestDataGenerator))]
+        public void Tennis2TestWithDifferentNames(int p1, int p2, string expected)
+        {
+            // Arrange:
+            // Create a new TennisGame2 instance with different player names.
+            var game = new TennisGame2("Alice", "Bob");
+
+            // Act & Assert: 
+            // Verify that the game's score matches the expected score for all given points.
+            CheckAllScores(game, p1, p2, expected, "Alice", "Bob");
         }
 
         [Theory]
@@ -102,7 +115,7 @@ namespace Tennis.Tests
         public void Tennis3Test(int p1, int p2, string expected)
         {
             var game = new TennisGame3("player1", "player2");
-            CheckAllScores(game, p1, p2, expected);
+            CheckAllScores(game, p1, p2, expected, "player1", "player2");
         }
 
         [Theory]
@@ -110,7 +123,7 @@ namespace Tennis.Tests
         public void Tennis4Test(int p1, int p2, string expected)
         {
             var game = new TennisGame4("player1", "player2");
-            CheckAllScores(game, p1, p2, expected);
+            CheckAllScores(game, p1, p2, expected, "player1", "player2");
         }
 
         [Theory]
@@ -118,7 +131,7 @@ namespace Tennis.Tests
         public void Tennis5Test(int p1, int p2, string expected)
         {
             var game = new TennisGame5("player1", "player2");
-            CheckAllScores(game, p1, p2, expected);
+            CheckAllScores(game, p1, p2, expected, "player1", "player2");
         }
 
         [Theory]
@@ -126,7 +139,7 @@ namespace Tennis.Tests
         public void Tennis6Test(int p1, int p2, string expected)
         {
             var game = new TennisGame6("player1", "player2");
-            CheckAllScores(game, p1, p2, expected);
+            CheckAllScores(game, p1, p2, expected, "player1", "player2");
         }
 
         /// <summary>
@@ -136,11 +149,13 @@ namespace Tennis.Tests
         /// <param name="player1Score">The score for player 1.</param>
         /// <param name="player2Score">The score for player 2.</param>
         /// <param name="expectedScore">The expected score result.</param>
-        private void CheckAllScores(ITennisGame game, int player1Score, int player2Score, string expectedScore)
+        /// <param name="player1Name">The name of player 1.</param>
+        /// <param name="player2Name">The name of player 2.</param>
+        private void CheckAllScores(ITennisGame game, int player1Score, int player2Score, string expectedScore, string player1Name, string player2Name)
         {
-             // Act
-            IncrementPoints(game, "player1", player1Score);
-            IncrementPoints(game, "player2", player2Score);
+            // Act
+            IncrementPoints(game, player1Name, player1Score);
+            IncrementPoints(game, player2Name, player2Score);
 
             // Assert
             Assert.Equal(expectedScore, game.GetScore());
